@@ -4,6 +4,8 @@ from home.models import Slot , Category
 from django.views.generic import CreateView,View , DetailView
 from home.forms import SlotForm
 from users.models import CustomUser
+from django.contrib.auth.models import User
+from typing import Any
 
 
 def index(request):
@@ -17,9 +19,10 @@ class CreateSlotVeiw(CreateView):
     def form_valid(self,form):
        
         data = form.data
-        post= Slot(name=data.get('name'),link=data.get('link'),size=data.get('size'),price=data.get('price'))
-        post.author = CustomUser.objects.get(pk=1)
-        post.category=Category.objects.get(pk=data.get('category'))
+        post= Slot(name=data.get('name'),link=data.get('link'),size=data.get('size'),price=data.get('price'), category_id = data.get('category'))
+        
+        post.author = self.request.user
+        # post.category=Category.objects.get(pk=data.get('category'))
         post.save()
         return redirect('index')
     def get_context_data(self,**kwargs):

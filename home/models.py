@@ -15,6 +15,7 @@ class Slot(models.Model):
     author = models.ForeignKey( settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey( Category, on_delete=models.CASCADE, null=True, blank=True)
     price = models.TextField(null=True,blank=True)
+    image = models.ImageField(upload_to='post/',null=True,blank=True)
 
     def __str__(self):
         return f"{self.name}"
