@@ -1,0 +1,36 @@
+{% include 'home/index.html'%}
+{% block content%}
+        <h1 class="position-absolute top-0 start-50 translate-middle-x ">{{object.name}}</h1>
+ 
+
+    {%csrf_token   %}
+
+    <div class="position-absolute top-0 start-50 translate-middle-x fixed-bottom fixed-top"  >
+    {% for post in slots%}
+    <div style="position: relative; top:90px;
+    background-image: linear-gradient(rgba(169, 169, 169, 0.5), rgba(169, 169, 169, 0.5));
+    background-size: 100px;
+    background-position: center;
+    height: 250px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+    padding:40px 40px 20px 20px;
+    padding-left: 40px;">
+    <h2 style=" text-transform: uppercase;">{{post.name}}</h2>
+    <h3 >{{post.content}}</h3>
+    <a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href ="{{post.link}}">link</a>
+    <p>{{post.date}}</p>
+    <p>{{post.author}}</p>
+   
+    </div>
+    {%endfor%}
+    </div>
+{%endblock%}
+
+

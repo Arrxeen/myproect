@@ -1,0 +1,44 @@
+{% include 'users/base.html'%}
+
+<div class="container d-flex justify-content-center align-items-center" >
+{% block title %}
+<title>Login</title>
+{% endblock%}
+{% block content%} 
+
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                
+                <div style="position: relative; top:90px; 
+background-image: linear-gradient(rgba(169, 169, 169, 0.5), rgba(169, 169, 169, 0.5));
+    background-size: 100px;
+    background-position: center;
+    height: 420px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+    padding:40px 30px 20px 20px;
+    padding-left: 40px;
+">
+<a>{{form.non_field_errors}}</a>
+                {% for f in form %}
+                <div>
+                   <h3> <label style="margin-left:60px ; " >{{ f.label }}</label></h3>
+                    <br>
+                    <h5><div style="margin-left:50px ;">{{ f }}</div></h5>
+                    <br>
+                </div>
+                    {{f.errors}}
+                {% endfor %}
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        {%endblock%}
+</div>
+        
